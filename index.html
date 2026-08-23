@@ -145,13 +145,18 @@
     padding:24px;box-shadow:var(--shadow-sm);transition:transform .18s, box-shadow .18s;
   }
   .benefit-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .icon{
+    width:1.2em;height:1.2em;fill:none;stroke:currentColor;stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:middle;
+  }
   .benefit-icon{
     width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;
-    font-size:20px;margin-bottom:14px;
+    margin-bottom:14px;color:var(--ink-900);
   }
-  .benefit-icon.g{background:var(--green-100);}
-  .benefit-icon.b{background:#dbeafe;}
-  .benefit-icon.y{background:#fef3c7;}
+  .benefit-icon .icon{width:22px;height:22px;}
+  .benefit-icon.g{background:var(--green-100);color:var(--green-700);}
+  .benefit-icon.b{background:#dbeafe;color:var(--blue-600);}
+  .benefit-icon.y{background:#fef3c7;color:#92620a;}
   .benefit-card h3{font-size:16.5px;margin:0 0 6px;font-weight:700;}
   .benefit-card p{font-size:14.5px;color:var(--ink-500);margin:0;line-height:1.5;}
 
@@ -300,6 +305,7 @@
   .payout-success{
     background:var(--green-50);border:1px solid #bfe8cd;border-radius:12px;padding:14px 16px;margin-bottom:16px;
     font-size:14px;color:var(--green-700);font-weight:600;
+    display:flex;align-items:center;gap:8px;
     animation:success-pop .35s ease;
   }
   @keyframes success-pop{
@@ -408,6 +414,7 @@
       <a href="#demo">Live Demo</a>
       <a href="#pricing">Pricing</a>
       <a href="#signup">Sign Up</a>
+      <a href="admin.html">Admin</a>
     </div>
     <button class="nav-cta" onclick="scrollToId('signup')">Get Started</button>
   </div>
@@ -419,22 +426,31 @@
     <h1 class="headline">See your tips.<br><span class="accent">Get paid today.</span></h1>
     <p class="subhead" id="hero-sub">TipJarPro is a transparent tip-pooling and payout platform for restaurants and salons — every <span id="hero-role">server</span> sees exactly how tips are split in real time, and can cash out same-day instead of waiting for payroll.</p>
     <div class="hero-actions">
-      <button class="btn btn-primary" onclick="scrollToId('demo')">▶ Try the Live Demo</button>
+      <button class="btn btn-primary" onclick="scrollToId('demo')">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor" stroke="none"/></svg>
+        Try the Live Demo
+      </button>
       <button class="btn btn-secondary" onclick="scrollToId('pricing')">See Pricing</button>
     </div>
     <div class="benefit-grid">
       <div class="benefit-card">
-        <div class="benefit-icon g">👁️</div>
+        <div class="benefit-icon g">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
         <h3>Full transparency</h3>
         <p>Every tip, every split — everyone on the team sees exactly how the pool is divided, in real time.</p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-icon b">⚡</div>
+        <div class="benefit-icon b">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 14h6l-1 8 8-12h-6l1-8Z"/></svg>
+        </div>
         <h3>Same-day payout</h3>
         <p>Cash out your share anytime during your shift. No more waiting two weeks for a payroll cycle.</p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-icon y">💳</div>
+        <div class="benefit-icon y">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2.2"/><path d="M2.5 10h19"/></svg>
+        </div>
         <h3>One flat fee</h3>
         <p>Venues pay a single flat monthly price. We never take a percentage cut of anyone's tips.</p>
       </div>
@@ -473,7 +489,10 @@
                 <div class="wc-amount count-up" id="worker-share">$0.00</div>
                 <div class="wc-sub" id="worker-meta">Server · 0.0 hrs logged today</div>
               </div>
-              <button class="cashout-btn" id="cashout-btn" onclick="doCashOut()">💸 Cash Out Now</button>
+              <button class="cashout-btn" id="cashout-btn" onclick="doCashOut()">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg>
+                Cash Out Now
+              </button>
             </div>
             <div class="payout-panel">
               <div id="payout-success-slot" role="status" aria-live="polite"></div>
@@ -581,7 +600,7 @@
         <button type="submit" class="signup-submit">Request Access</button>
       </form>
       <div class="signup-success" id="signup-success" style="display:none;">
-        <div class="check">✓</div>
+        <div class="check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:22px;height:22px;stroke-width:2.2;color:white;"><path d="M4 12.5 9 17.5 20 5.5"/></svg></div>
         <h3>Thanks — we'll be in touch!</h3>
         <p>A member of our team will reach out shortly to get your venue set up.</p>
       </div>
@@ -589,7 +608,7 @@
   </div>
 </section>
 
-<footer>© 2026 TipJarPro. This is a demo landing page — no real payments are made.</footer>
+<footer>© 2026 TipJarPro. This is a demo landing page — no real payments are made. <a href="admin.html" style="color:inherit;text-decoration:underline;">Admin dashboard →</a></footer>
 
 <div id="toast-stack" role="status" aria-live="polite"></div>
 
@@ -656,7 +675,7 @@
     var el = document.createElement("div");
     el.className = "toast";
     el.title = "Dismiss";
-    el.innerHTML = '<span class="toast-icon">💰</span><span>' + text + "</span>";
+    el.innerHTML = '<span class="toast-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;color:white;stroke-width:2;"><path d="M12 4.5v15M6 9l6-6 6 6"/></svg></span><span>' + text + "</span>";
     function dismiss(){ if(el.parentNode) el.parentNode.removeChild(el); }
     el.addEventListener("click", dismiss);
     stack.appendChild(el);
@@ -812,12 +831,12 @@
       payoutHistory.push({ amount: amount, time: timeStr });
 
       var slot = document.getElementById("payout-success-slot");
-      slot.innerHTML = '<div class="payout-success">✅ '+fmt(amount)+' sent to your account ending in '+last4+' — arrives today</div>';
+      slot.innerHTML = '<div class="payout-success"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;stroke-width:2.2;"><path d="M4 12.5 9 17.5 20 5.5"/></svg>'+fmt(amount)+' sent to your account ending in '+last4+' — arrives today</div>';
 
       // reset pool contribution for that worker conceptually: for the demo, we don't reduce pool,
       // just record the payout and let the running total keep growing with new tips.
       btn.disabled = false;
-      btn.innerHTML = "💸 Cash Out Now";
+      btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg>Cash Out Now';
       cashOutInFlight = false;
       renderPayoutHistory();
 
