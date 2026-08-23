@@ -12,7 +12,7 @@
     --green-100:#dff6e3;
     --green-500:#30b855;
     --green-600:#28a248;
-    --green-700:#1f8a3b;
+    --green-700:#1a7a34;
     --blue-500:#0071e3;
     --blue-600:#0058b8;
     --ink-900:#1d1d1f;
@@ -29,6 +29,22 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  /* Visible keyboard/switch-control focus ring on every interactive element (HIG Accessibility > Mobility) */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+  summary:focus-visible, [tabindex]:focus-visible{
+    outline:3px solid var(--blue-500);
+    outline-offset:2px;
+    border-radius:6px;
+  }
+  input[type=range]:focus-visible{ outline-offset:4px; }
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
   body{
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Helvetica,Arial,sans-serif;
@@ -65,6 +81,7 @@
   .nav-links a:hover{color:var(--green-700);}
   .nav-cta{
     background:var(--blue-500);color:white;border:none;padding:9px 18px;
+    min-height:44px;display:inline-flex;align-items:center;justify-content:center;
     border-radius:980px;font-size:14px;font-weight:600;cursor:pointer;
     transition:transform .15s, box-shadow .15s, background .15s;
   }
@@ -163,6 +180,7 @@
   }
   .toggle-btn{
     border:none;background:transparent;padding:9px 20px;border-radius:999px;
+    min-height:44px;display:inline-flex;align-items:center;justify-content:center;
     font-weight:600;font-size:14px;color:var(--ink-500);cursor:pointer;transition:all .2s;
   }
   .toggle-btn.active{background:var(--ink-900);color:white;box-shadow:var(--shadow-sm);}
@@ -199,7 +217,7 @@
   .slider-card label{font-weight:700;font-size:14.5px;}
   .slider-card .mode-readout{font-size:13px;font-weight:600;color:var(--green-700);}
   input[type=range]{
-    width:100%;height:6px;border-radius:6px;background:#d3ecda;-webkit-appearance:none;appearance:none;outline:none;
+    width:100%;height:6px;border-radius:6px;background:#d3ecda;-webkit-appearance:none;appearance:none;
   }
   input[type=range]::-webkit-slider-thumb{
     -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
@@ -242,6 +260,7 @@
   }
   .worker-chip{
     border:1px solid var(--line);background:white;border-radius:999px;padding:8px 16px;
+    min-height:44px;display:inline-flex;align-items:center;justify-content:center;
     font-size:13.5px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--ink-700);
   }
   .worker-chip.active{background:var(--ink-900);color:white;border-color:var(--ink-900);}
@@ -295,8 +314,8 @@
   @keyframes slide-in{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
   .payout-history li:last-child{border-bottom:none;}
   .payout-history .ph-amt{font-weight:700;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;color:var(--green-700);}
-  .payout-history .ph-time{color:var(--ink-300);font-size:12px;}
-  .empty-hint{color:var(--ink-300);font-size:14px;text-align:center;padding:30px 0;}
+  .payout-history .ph-time{color:var(--ink-500);font-size:12px;}
+  .empty-hint{color:var(--ink-500);font-size:14px;text-align:center;padding:30px 0;}
 
   /* Toasts */
   #toast-stack{
@@ -307,6 +326,7 @@
     background:var(--ink-900);color:white;padding:13px 16px;border-radius:12px;
     box-shadow:var(--shadow-lg);font-size:13.5px;display:flex;align-items:center;gap:10px;
     animation:toast-in .35s ease, toast-out .35s ease 3.2s forwards;
+    cursor:pointer;
   }
   .toast .toast-icon{
     width:26px;height:26px;border-radius:50%;background:var(--green-500);flex:none;
@@ -351,7 +371,7 @@
   .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#d1d1d6;}
   .field input, .field select{
     width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);
-    background:rgba(255,255,255,0.08);color:white;font-size:14.5px;font-family:inherit;outline:none;
+    background:rgba(255,255,255,0.08);color:white;font-size:14.5px;font-family:inherit;
     transition:border-color .15s;
   }
   .field input::placeholder{color:#8e8e93;}
@@ -373,7 +393,7 @@
   .signup-success h3{margin:0 0 6px;}
   .signup-success p{color:#b7cdc2;font-size:14px;margin:0;}
 
-  footer{text-align:center;padding:36px 0 50px;color:var(--ink-300);font-size:13px;}
+  footer{text-align:center;padding:36px 0 50px;color:var(--ink-500);font-size:13px;}
 
   .count-up{transition:color .15s;}
   .flash{color:var(--green-600) !important;}
@@ -456,7 +476,7 @@
               <button class="cashout-btn" id="cashout-btn" onclick="doCashOut()">💸 Cash Out Now</button>
             </div>
             <div class="payout-panel">
-              <div id="payout-success-slot"></div>
+              <div id="payout-success-slot" role="status" aria-live="polite"></div>
               <div style="font-weight:700;font-size:14.5px;margin-bottom:10px;">Payout history (this session)</div>
               <ul class="payout-history" id="payout-history"></ul>
               <div class="empty-hint" id="payout-empty">No cash-outs yet — try the button.</div>
@@ -571,7 +591,7 @@
 
 <footer>© 2026 TipJarPro. This is a demo landing page — no real payments are made.</footer>
 
-<div id="toast-stack"></div>
+<div id="toast-stack" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -635,9 +655,12 @@
     var stack = document.getElementById("toast-stack");
     var el = document.createElement("div");
     el.className = "toast";
+    el.title = "Dismiss";
     el.innerHTML = '<span class="toast-icon">💰</span><span>' + text + "</span>";
+    function dismiss(){ if(el.parentNode) el.parentNode.removeChild(el); }
+    el.addEventListener("click", dismiss);
     stack.appendChild(el);
-    setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 3600);
+    setTimeout(dismiss, 3600);
   }
 
   /* ---------------- Tip event engine ---------------- */
